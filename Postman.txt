@@ -1,0 +1,89 @@
+1 registrar usuario e intentar registrar el mismo usuario
+http://localhost:4567/registrar
+{
+    "nombre":"Enzo",
+    "apellido":"Mansilla",
+    "email":"EnzoMan@gmail.com",
+    "dni":45667980,
+    "contrasenia":"ensoman78656423",
+    "domicilio":{
+        "calle":"Santa Maria",
+        "numero":115,
+        "depNumero":null,
+        "piso":null
+     }
+ }
+
+2 intentar iniciar sesion
+http://localhost:4567/Login
+{
+    "email":"EnzoMan@gmail.com",
+    "contrasenia":"ensoman78656423"
+}
+
+3 registrar tarjeta
+http://localhost:4567/registrarTar
+{
+    "numero":231,
+    "banco":"Santander",
+    "titular":"Enzo Manzilla",
+    "fecha_caducidad":"2029/02/09",
+    "id_usuario":{
+        "id":1
+    }
+}
+4 registrar el producto
+http://localhost:4567/Ingresaprod
+{
+    "nombre":"leche",
+    "marca":"sancor",
+    "f_venc":"2025/02/02",
+    "precio":60,
+    "stock":"40",
+    "descripcion":"leche descremada",
+    "Descuento": 0.5
+}
+5 Actualizar el producto
+http://localhost:4567/Actualizarprod
+{
+        "id":1,
+        "nombre":"Queso",
+        "marca":"Casancrem",
+        "f_venc":"2026/01/07",
+        "precio":37,
+        "stock":7,
+        "descripcion":"queso cremoso",
+        "Descuento":0.2
+}
+6 Seleccionar producto para el carrito
+http://localhost:4567/seleccionar
+{
+    "usuario":{
+        "id":1
+    },
+    "producto":{
+        "id":1
+    },
+    "cantidad":3
+}
+7 Ver el carrito
+http://localhost:4567/micarrito/1
+
+8 Realizar compra
+http://localhost:4567/comprar
+{
+    "tipo":"A",
+    "destinatario":{
+        "id":1
+    },
+    "tarjeta":{
+        "numero":231
+    }
+    
+}
+9 Ver que usuarios realizaron una compra
+http://localhost:4567/usuariocompro
+{
+    "id":1
+}
+//id es del usuario que se quiere consultar
