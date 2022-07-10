@@ -66,8 +66,8 @@ http://localhost:4567/seleccionar
     },
     "cantidad":3
 }
-7 Ver el carrito
-http://localhost:4567/micarrito/1
+7 Ver el carrito /1 hace referencia al ID del usuario
+http://localhost:4567/micarrito/1 
 
 8 Realizar compra
 http://localhost:4567/comprar

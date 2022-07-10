@@ -8,14 +8,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.models.Carrito;
 import com.models.Comprobante;
-//import com.models.Descuento;
 import com.models.Detalle;
 import com.models.Producto;
 import com.models.TarjetaCredito;
 import com.models.Usuario;
 import com.supermark.services.CRUDCarrito;
 import com.supermark.services.CRUDComprobante;
-//import com.supermark.services.CRUDDescuento;
 import com.supermark.services.CRUDProducto;
 import com.supermark.services.CRUDTarjeta;
 import com.supermark.services.CRUDusuario;
@@ -113,21 +111,18 @@ public class App {
 //------------------------------Comprobante-----------------------------------------\\
 		post("/registrarTar",(request,response)->{
 			response.type("application/json");
-			//response.header("Access-Control-Allow-Origin", "*");
 			Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 			TarjetaCredito tar = mapper.fromJson(request.body(),TarjetaCredito.class);
 			
-			
-				//Ejecutar un servicio
-				CRUDTarjeta ct = new CRUDTarjeta();
-				boolean resultado = ct.register(tar);
-				System.out.println(tar);
+			CRUDTarjeta ct = new CRUDTarjeta();
+			boolean resultado = ct.register(tar);
+			System.out.println(tar);
 
-			    if(resultado==true) {
+			if(resultado==true) {
 			    	return mapper
 			    			.toJson(new StandardResponse(
 			    					StatusResponse.SUCCESS,
-			    					"Tarjeta Registrad")
+			    					"Tarjeta Registrada")
 			    					);
 			    }else {
 			    	return mapper
@@ -140,9 +135,7 @@ public class App {
 		
 		post("/comprar",(request,response)->{
 			response.type("application/json");
-			//response.header("Access-Control-Allow-Origin", "*");
 			Gson mapper = new Gson();
-			//Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 			Comprobante comp = mapper.fromJson(request.body(),Comprobante.class);
 			comp.setFecha(new Timestamp(System.currentTimeMillis()));
 			
@@ -164,9 +157,7 @@ public class App {
 		});
 		get("/usuariocompro",(request,response)->{
 			response.type("application/json");
-			//response.header("Access-Control-Allow-Origin", "*");
 			Gson mapper = new Gson();
-			//Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 			Usuario us = mapper.fromJson(request.body(),Usuario.class);
 			
 			
@@ -187,46 +178,17 @@ public class App {
 			}
 		});
 //------------------------------Producto--------------------------------------------\\
-//		post("/Ingresadesc",(request,response)->{
-//			response.type("application/json");
-//			//response.header("Access-Control-Allow-Origin", "*");
-//			//Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
-//			Gson mapper = new Gson();
-//			Descuento Desc = mapper.fromJson(request.body(),Descuento.class);
-//			System.out.println(Desc);
-//			
-//				//Ejecutar un servicio
-//				CRUDDescuento cd = new CRUDDescuento();
-//				boolean resultado = cd.register(Desc);
-//				System.out.println(Desc);
-//
-//			    if(resultado==true) {
-//			    	return mapper
-//			    			.toJson(new StandardResponse(
-//			    					StatusResponse.SUCCESS,
-//			    					"Descuento Registrado")
-//			    					);
-//			    }else {
-//			    	return mapper
-//			    			.toJson(new StandardResponse(
-//			    					StatusResponse.ERROR,
-//			    					"Ocurrio un error inesperado")
-//			    					);
-//			    }
-//		});
 		put("/Actualizarprod",(request,response)->{
 			response.type("application/json");
-			//response.header("Access-Control-Allow-Origin", "*");
 			Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 			Producto prod = mapper.fromJson(request.body(),Producto.class);
 			System.out.println(prod);
 			
-				//Ejecutar un servicio
-				CRUDProducto cp = new CRUDProducto();
-				boolean resultado = cp.actualizarProducto(prod);
-				System.out.println(prod);
+			CRUDProducto cp = new CRUDProducto();
+			boolean resultado = cp.actualizarProducto(prod);
+			System.out.println(prod);
 
-			    if(resultado==true) {
+			if(resultado==true) {
 			    	return mapper
 			    			.toJson(new StandardResponse(
 			    					StatusResponse.SUCCESS,
@@ -242,17 +204,15 @@ public class App {
 		});
 		post("/Ingresaprod",(request,response)->{
 			response.type("application/json");
-			//response.header("Access-Control-Allow-Origin", "*");
 			Gson mapper = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
 			Producto prod = mapper.fromJson(request.body(),Producto.class);
 			System.out.println(prod);
 			
-				//Ejecutar un servicio
-				CRUDProducto cp = new CRUDProducto();
-				boolean resultado = cp.registrar(prod);
-				System.out.println(prod);
+			CRUDProducto cp = new CRUDProducto();
+			boolean resultado = cp.registrar(prod);
+			System.out.println(prod);
 
-			    if(resultado==true) {
+			if(resultado==true) {
 			    	return mapper
 			    			.toJson(new StandardResponse(
 			    					StatusResponse.SUCCESS,

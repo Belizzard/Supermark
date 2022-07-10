@@ -10,13 +10,13 @@ import com.models.Producto;
 
 
 public class CRUDDetalle {
-	private Conexion conexion;
+	private Conexion conn;
 	private String sql;
 	
 	public CRUDDetalle() {
 		super();
-		this.conexion = new Conexion("supermark");
-		this.conexion.Connect();//Abre la conexion
+		this.conn = new Conexion("Supermark");
+		this.conn.Connect();
 		this.sql = "";
 	}
 	
@@ -26,7 +26,7 @@ public class CRUDDetalle {
 				comp.getId();
 		ResultSet rs;
 		try {
-			rs = conexion.getStmt().executeQuery(sql);
+			rs = conn.getStmt().executeQuery(sql);
 			CRUDProducto cp = new CRUDProducto();
 			while (rs.next()) {
 				Producto prod = cp.getProducto(rs.getInt("id_producto"));
@@ -47,7 +47,7 @@ public class CRUDDetalle {
 				detalle.getProducto().getId()+","+
 				detalle.getCantidad()+")";
 		try {
-			conexion.getStmt().executeUpdate(sql);
+			conn.getStmt().executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

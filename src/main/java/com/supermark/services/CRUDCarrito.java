@@ -16,11 +16,11 @@ public class CRUDCarrito {
 	public CRUDCarrito() {
 		super();
 		this.conn = new Conexion("Supermark");
-		this.conn.Connect();//Abre la conexion
+		this.conn.Connect();
 		this.sql = "";
 	}
 	
-	public boolean agregar(Carrito carrito) {//-->Registrar un usuario
+	public boolean agregar(Carrito carrito) {
 		this.sql = "INSERT INTO Carrito "+
 				"(id_usuario,id_producto,cantidad) "+
 				"VALUE ("+
@@ -84,16 +84,4 @@ public class CRUDCarrito {
 		
 		return resultado;
 	}
-//	public boolean Contador (Carrito carrito) {
-//		int count = 0;
-//		boolean resultado = false;
-//		this.sql = "SELECT * FROM Carrito WHERE id_usuario ="+
-//				carrito.getUsuario().getId();
-//		try {
-//			conn.setRs(conn.getStmt().executeQuery(sql));
-//			
-//			while(conn.getRs().next()) {
-//				count=count+1;
-//			}
-//		}
-	}
+}

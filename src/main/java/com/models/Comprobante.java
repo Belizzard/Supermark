@@ -34,17 +34,6 @@ public class Comprobante {
 		this.destinatario = destinatario;
 		this.tarjeta = tarjeta;
 	}
-	
-//	public Comprobante(String tipo, Timestamp fecha, HashMap<Integer, Detalle> detalles,
-//			Usuario destinatario, TarjetaCredito tarjeta) {
-//		super();
-//		this.tipo = tipo;
-//		this.fecha = fecha;
-//		this.detalles = detalles;
-//		this.destinatario = destinatario;
-//		this.tarjeta = tarjeta;
-//	}
-	
 	public Integer getId() {
 		return id;
 	}

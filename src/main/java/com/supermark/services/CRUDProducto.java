@@ -4,8 +4,6 @@ package com.supermark.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.models.Producto;
-//import com.models.Tipo;
-
 
 public class CRUDProducto {
 	private Conexion conn;
@@ -14,13 +12,10 @@ public class CRUDProducto {
 	public CRUDProducto() {
 		super();
 		this.conn = new Conexion("supermark");
-		this.conn.Connect();//Abre la conexion
+		this.conn.Connect();
 		this.sql = "";
 	}
-	public boolean registrar(Producto producto) {//-->Registrar un usuario
-//		CRUDTipo ct = new CRUDTipo();
-//		Tipo tip = ct.register(producto.getTipo());
-//		producto.setTipo(tip);
+	public boolean registrar(Producto producto) {
 		this.sql = "INSERT INTO Producto "+
 				"(nombre,marca,fecha_venc,precio,stock,descripcion,Descuento) "+
 				"VALUE ('"+

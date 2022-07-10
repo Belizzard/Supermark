@@ -16,7 +16,7 @@ public class CRUDusuario {
 		this.sql = "";
 	}
 
-	public boolean registrar(Usuario usuario) {//-->Registrar un usuario
+	public boolean registrar(Usuario usuario) {
 		CRUDDomicilio cdom = new CRUDDomicilio();
 		Domicilio dom = cdom.register(usuario.getDomicilio());
 		usuario.setDomicilio(dom);

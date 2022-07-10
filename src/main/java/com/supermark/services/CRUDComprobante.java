@@ -12,13 +12,13 @@ import com.models.Usuario;
 
 
 public class CRUDComprobante {
-	private Conexion conexion;
+	private Conexion conn;
 	private String sql;
 	
 	public CRUDComprobante() {
 		super();
-		this.conexion = new Conexion("supermark");
-		this.conexion.Connect();//Abre la conexion
+		this.conn = new Conexion("Supermark");
+		this.conn.Connect();
 		this.sql = "";
 	}
 	
@@ -42,7 +42,7 @@ public class CRUDComprobante {
 				comprobante.getTarjeta().getNumero()+","+
 				total+")";
 		try {
-			PreparedStatement stmt = conexion.getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = conn.getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			int filas = stmt.executeUpdate();
 			if(filas>0) {
 				resultado = true;
@@ -69,10 +69,7 @@ public class CRUDComprobante {
 			int stockProducto = det.getProducto().getStock();
 			int cantidadProducto = det.getCantidad();
 			if(stockProducto-cantidadProducto>=0) {
-				//Insertamos una fila en la tabla Detalle
 				cd.registrarDetalle(det,id_comprobante);
-				//Actualizacion sobre la tabla Producto
-				//cp.getStockActual(det.getProducto());
 				cp.actualizarStock(det.getProducto(), -det.getCantidad());
 			}else {		
 				System.out.println("No se dispone del stock necesario para realizar esta venta");
@@ -85,20 +82,19 @@ public class CRUDComprobante {
 		this.sql = "SELECT * FROM comprobante WHERE id_usuario ="+
 					usuario.getId();
 		try {
-			conexion.setRs(conexion.getStmt().executeQuery(sql));
+			conn.setRs(conn.getStmt().executeQuery(sql));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			System.out.println("Comprobantes del Usuario:");
-			ResultSet rs = conexion.getRs();
+			ResultSet rs = conn.getRs();
 			try {
 				CRUDDetalle cd = new CRUDDetalle();
-				while (rs.next()) {//Mientras exista un fila siguiente/Elementos en el conjunto
+				while (rs.next()) {
 					Comprobante comp = new Comprobante();
 					comp.setId(rs.getInt("id"));
 					comp.setTipo(rs.getString("tipo"));
 					comp.setFecha(rs.getTimestamp("fecha"));
-					//Busco las lineas de detalle asociadas al comprobante
 					comp.setDetalles(cd.getLineasDetalle(comp));
 					
 					comprobantes.add(comp);
